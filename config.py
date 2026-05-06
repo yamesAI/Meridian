@@ -10,8 +10,13 @@ class Config:
     DEBUG = os.environ.get("FLASK_DEBUG", "false").lower() == "true"
 
     # Database
-    DATABASE_URL = os.environ.get("DATABASE_URL", "sqlite:///meridian.db")
-    SQLALCHEMY_DATABASE_URI = DATABASE_URL
+    # On Netlify set DATABASE_URL to your Neon/Supabase postgres connection string.
+    # Netlify/Heroku-style postgres:// URIs are normalised to postgresql://.
+    _db_url = os.environ.get("DATABASE_URL", "sqlite:///meridian.db")
+    if _db_url.startswith("postgres://"):
+        _db_url = _db_url.replace("postgres://", "postgresql://", 1)
+    DATABASE_URL = _db_url
+    SQLALCHEMY_DATABASE_URI = _db_url
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # Astrology API (astrology-api.io Ultra+)
