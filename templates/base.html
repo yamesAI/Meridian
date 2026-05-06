@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}The Meridian — AI Transit Readings{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}Traditional astrology meets AI. Grounded in 700 years of technique — Bonatti, Lilly, Ficino. Get your free transit reading.{% endblock %}">
+  <meta property="og:title" content="{% block og_title %}The Meridian{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}Your Saturn Return. Your transits. Your timing windows. This is real astrology.{% endblock %}">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/meridian.css') }}">
+
+  {% if config.META_PIXEL_ID %}
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '{{ config.META_PIXEL_ID }}');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id={{ config.META_PIXEL_ID }}&ev=PageView&noscript=1"/></noscript>
+  {% endif %}
+
+  {% if config.TIKTOK_PIXEL_ID %}
+  <!-- TikTok Pixel -->
+  <script>
+    !function (w, d, t) {
+      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify",
+      "instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],
+      ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};
+      for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);
+      ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},
+      ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";
+      ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,
+      ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=document.createElement("script");
+      o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;
+      var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
+      ttq.load('{{ config.TIKTOK_PIXEL_ID }}');
+      ttq.page();
+    }(window, document, 'ttq');
+  </script>
+  {% endif %}
+
+  {% block head %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+
+  <nav class="site-nav">
+    <a href="/" class="nav-logo">✦ The Meridian</a>
+    <div class="nav-links">
+      <a href="/blog">Dispatches</a>
+      <a href="/subscribe" class="nav-cta">Get Full Reading</a>
+    </div>
+  </nav>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="flash-messages">
+        {% for category, message in messages %}
+          <div class="flash flash--{{ category }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  {% block content %}{% endblock %}
+
+  <footer class="site-footer">
+    <p class="footer-tagline">Rooted in 700 years of traditional astrology — Bonatti · Lilly · Ficino · Valens</p>
+    <div class="footer-links">
+      <a href="/blog">Dispatches</a>
+      <a href="/subscribe">Plans</a>
+      <a href="/privacy">Privacy</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 The Meridian. All rights reserved.</p>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

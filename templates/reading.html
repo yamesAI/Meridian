@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block title %}{{ reading.title }} — The Meridian{% endblock %}
+{% block meta_description %}Your personal transit reading from The Meridian. Traditional astrology meets AI.{% endblock %}
+
+{% block body_class %}reading-page{% endblock %}
+
+{% block content %}
+
+<!-- SATURN RETURN BANNER (conditional) ─────────────────────────────────── -->
+{% if saturn_active %}
+<div class="saturn-banner">
+  <div class="saturn-banner__inner">
+    <span class="saturn-banner__icon">♄</span>
+    <span class="saturn-banner__text">
+      Your Saturn Return is active —
+      {% if saturn_months %}{{ saturn_months }} months remaining.{% endif %}
+      <a href="/subscribe?plan=pro&utm_source=saturn_banner" class="saturn-banner__link">
+        Get the full Saturn Return analysis →
+      </a>
+    </span>
+  </div>
+</div>
+{% endif %}
+
+<article class="reading-article">
+
+  <!-- CHART STRIP ─────────────────────────────────────────────────────── -->
+  <header class="reading-header">
+    <p class="reading-header__eyebrow">Your Transit Reading</p>
+    <h1 class="reading-header__title">{{ reading.title }}</h1>
+
+    {% if reading.chart_highlights %}
+    <div class="chart-strip">
+      {% for item in reading.chart_highlights %}
+      <div class="chart-pill">
+        <span class="chart-pill__label">{{ item.label }}</span>
+        <span class="chart-pill__value">{{ item.value }}</span>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </header>
+
+  <!-- HOOK ────────────────────────────────────────────────────────────── -->
+  {% if reading.hook %}
+  <div class="reading-hook">
+    <p class="reading-hook__text">"{{ reading.hook }}"</p>
+  </div>
+  {% endif %}
+
+  <!-- URGENCY FLAG ────────────────────────────────────────────────────── -->
+  {% if reading.urgency_flag %}
+  <div class="urgency-flag">
+    <span class="urgency-flag__icon">⚡</span>
+    <span class="urgency-flag__text">{{ reading.urgency_flag }}</span>
+  </div>
+  {% endif %}
+
+  <!-- READING BODY ─────────────────────────────────────────────────────── -->
+  <div class="reading-body {% if is_free %}reading-body--gated{% endif %}">
+    {% set paragraphs = reading.body.split('\n\n') %}
+    {% for para in paragraphs %}
+      {% if para.strip() %}
+        <p>{{ para.strip() }}</p>
+      {% endif %}
+    {% endfor %}
+
+    {% if is_free %}
+    <div class="paywall-gate">
+      <div class="paywall-gate__blur"></div>
+      <div class="paywall-gate__cta">
+        <h3>Your full reading includes 3 more sections</h3>
+        <ul>
+          <li>✦ Your complete timing windows for the next 30 days</li>
+          <li>✦ Essential dignity analysis for every active transit</li>
+          <li>✦ Your Numerology deep dive + Kabbalistic layer</li>
+          <li>✦ Void of course Moon dates to avoid</li>
+        </ul>
+        <a href="/subscribe?plan=pro" class="btn btn--primary">Unlock Full Reading — $17/mo</a>
+        <p class="paywall-gate__no-cc">Cancel anytime. No games.</p>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- NUMEROLOGY SECTION ───────────────────────────────────────────────── -->
+  {% if reading.numerology_section and not is_free %}
+  <div class="numerology-card">
+    <h2 class="numerology-card__title">✦ The Numbers Agree</h2>
+    <div class="numerology-card__grid">
+      <div class="numerology-item">
+        <h4>Your Life Path</h4>
+        <p>{{ reading.numerology_section.life_path }}</p>
+      </div>
+      <div class="numerology-item">
+        <h4>Your Personal Year</h4>
+        <p>{{ reading.numerology_section.personal_year }}</p>
+      </div>
+    </div>
+    <div class="convergence-statement">
+      <p>{{ reading.numerology_section.convergence_statement }}</p>
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- TIMING WINDOW ───────────────────────────────────────────────────── -->
+  {% if reading.timing_window %}
+  <div class="timing-window {% if is_free %}timing-window--blurred{% endif %}">
+    <h3 class="timing-window__title">Your Timing Window</h3>
+    {% if is_free %}
+    <div class="timing-window__blur-overlay">
+      <p>Unlock your specific timing window with Pro →</p>
+      <a href="/subscribe?plan=pro" class="btn btn--outline btn--sm">Upgrade to Pro</a>
+    </div>
+    {% else %}
+    <p class="timing-window__content">{{ reading.timing_window }}</p>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  <!-- UPGRADE CTA (free users) ─────────────────────────────────────────── -->
+  {% if is_free %}
+  <div class="upgrade-strip">
+    <div class="upgrade-strip__inner">
+      <h2>This was your preview. Your full reading goes much deeper.</h2>
+      <p>Every Monday: full weekly synthesis, all transits analyzed with essential dignities, profection year + time lord, complete numerology profile, and precise timing windows.</p>
+      <div class="upgrade-strip__btns">
+        <a href="/subscribe?plan=pro" class="btn btn--primary">Get The Meridian Weekly — $17/mo</a>
+        <a href="/subscribe?plan=premium" class="btn btn--outline">Go Deep — $47/mo</a>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+</article>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/reading.js') }}"></script>
+{% endblock %}
