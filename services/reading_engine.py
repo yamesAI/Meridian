@@ -197,7 +197,7 @@ def assemble_chart_data(
     data["transits"] = api.current_transits(name, dob, tob, city, country_code)
     data["profection"] = api.profection_year(name, dob, tob, city, country_code)
     data["dignities"] = api.essential_dignities(name, dob, tob, city, country_code)
-    data["saturn_return"] = api.saturn_return(name, dob, tob, city, country_code)
+    data["saturn_return"] = api.saturn_return(dob)
     data["numerology_core"] = api.numerology_core(name, dob)
     data["personal_year"] = api.numerology_personal_year(dob)
 
@@ -205,8 +205,7 @@ def assemble_chart_data(
         data["personal_month"] = api.numerology_personal_month(dob)
         data["personal_day"] = api.numerology_personal_day(dob)
         data["void_moon"] = api.void_moon_periods(city, country_code)
-        data["life_areas"] = api.life_areas(name, dob, tob, city, country_code)
-        data["numerology_cycles"] = api.numerology_cycles(dob)
+        data["numerology_cycles"] = api.numerology_cycles(name, dob)
 
     if reading_type in ["premium_monthly", "annual_forecast"]:
         data["solar_return"] = api.solar_return(name, dob, tob, city, country_code)
