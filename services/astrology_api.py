@@ -166,7 +166,7 @@ class AstrologyAPI:
         self, name: str, dob: str, tob: str, city: str, country_code: str
     ) -> dict:
         return self._post(
-            "/insights/saturn-return",
+            "/traditional/saturn-return",
             {"subject": self._birth_subject(name, dob, tob, city, country_code)},
         )
 
