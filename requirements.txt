@@ -9,7 +9,7 @@ resend==2.3.0
 markdown==3.6
 python-frontmatter==1.1.0
 mailchimp-marketing==3.0.80
-Pillow==10.4.0
+Pillow==11.3.0
 pytz==2024.1
 serverless-wsgi==3.0.4
-psycopg2-binary==2.9.9
+psycopg2-binary==2.9.12
