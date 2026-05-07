@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Birth Data — The Meridian</title>
+  <meta name="description" content="Enter your birth details to generate your personal transit reading. Takes 2 minutes.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/meridian.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body class="quiz">
+
+  <nav class="site-nav">
+    <a href="/" class="nav-logo">✦ The Meridian</a>
+    <div class="nav-links">
+      <a href="/blog">Dispatches</a>
+      <a href="/subscribe" class="nav-cta">Get Full Reading</a>
+    </div>
+  </nav>
+
+  <section class="quiz-section">
+    <div class="quiz__inner">
+      <div class="quiz__header">
+        <p class="quiz__eyebrow">Step 1 of 1</p>
+        <h1 class="quiz__title">Your Birth Data</h1>
+        <p class="quiz__subtitle">This is what the astrology actually needs. Your chart is specific to the minute and place you arrived on Earth.</p>
+      </div>
+
+      <form id="quiz-form" name="reading-request" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="quiz__form">
+        <input type="hidden" name="form-name" value="reading-request">
+        <p class="hidden" style="display:none;">
+          <label>Don't fill this out: <input name="bot-field"></label>
+        </p>
+
+        <div class="form-group">
+          <label for="name">First Name</label>
+          <input type="text" id="name" name="name" placeholder="What we'll call you" autocomplete="given-name">
+        </div>
+
+        <div class="form-group form-group--required">
+          <label for="email">Email <span class="req">*</span></label>
+          <input type="email" id="email" name="email" required placeholder="For your reading delivery" autocomplete="email">
+        </div>
+
+        <div class="form-group form-group--required">
+          <label for="dob">Date of Birth <span class="req">*</span></label>
+          <input type="date" id="dob" name="dob" required>
+        </div>
+
+        <div class="form-group">
+          <label for="tob">Time of Birth <span class="optional">(as accurate as possible)</span></label>
+          <input type="time" id="tob" name="tob" placeholder="HH:MM">
+          <p class="form-hint">If unknown, leave blank — we'll use a noon chart. Birth time affects Ascendant and house placements.</p>
+        </div>
+
+        <div class="form-group form-group--required">
+          <label for="birth_city">Birth City <span class="req">*</span></label>
+          <input type="text" id="birth_city" name="birth_city" required
+                 placeholder="Start typing your birth city…" autocomplete="off">
+          <input type="hidden" id="country_code" name="country_code" value="US">
+          <div id="city-suggestions" class="autocomplete-dropdown"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="focus">What matters most to you right now?</label>
+          <textarea id="focus" name="focus" rows="3"
+            placeholder="A sentence or two about what you're navigating — career, a relationship, a decision, financial pressure, creative work. The reading will be oriented around this."></textarea>
+        </div>
+
+        <div class="quiz__submit">
+          <button type="submit" class="btn btn--primary btn--lg" id="submit-btn">
+            Generate My Reading →
+          </button>
+          <p class="quiz__loading" id="loading-msg" style="display:none;">
+            ✦ Reading the sky for you — this takes about 20 seconds…
+          </p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <p class="footer-tagline">Rooted in 700 years of traditional astrology — Bonatti · Lilly · Ficino · Valens</p>
+    <div class="footer-links">
+      <a href="/blog">Dispatches</a>
+      <a href="/subscribe">Plans</a>
+      <a href="/privacy">Privacy</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 The Meridian. All rights reserved.</p>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script>
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('dob').setAttribute('max', today);
+  </script>
+  <script src="/js/quiz.js"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get Your Full Reading — The Meridian</title>
+  <meta name="description" content="Unlock full weekly transit readings with traditional astrology technique. Cancel anytime.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/meridian.css">
+</head>
+<body class="subscribe">
+
+  <nav class="site-nav">
+    <a href="/" class="nav-logo">✦ The Meridian</a>
+    <div class="nav-links">
+      <a href="/blog">Dispatches</a>
+      <a href="/subscribe" class="nav-cta">Get Full Reading</a>
+    </div>
+  </nav>
+
+  <section class="subscribe-section">
+    <div class="subscribe__inner">
+      <h1 class="subscribe__title">Choose Your Depth</h1>
+      <p class="subscribe__sub">Every reading synthesizes natal chart, current transits, profection year, essential dignities, and numerology. This is not a template.</p>
+
+      <div class="pricing__grid">
+
+        <div class="pricing__card" id="card-pro">
+          <h3>The Meridian Weekly</h3>
+          <p class="pricing__price">$17<span>/mo</span></p>
+          <ul class="pricing__features">
+            <li>✦ Full weekly transit synthesis</li>
+            <li>✦ Profection year + time lord analysis</li>
+            <li>✦ Essential dignity for every transit</li>
+            <li>✦ Numerology core numbers + personal year</li>
+            <li>✦ Specific timing windows</li>
+            <li>✦ Saturn Return analysis (if active)</li>
+            <li>✦ Void of course Moon alerts</li>
+            <li>✦ Delivered every Monday morning</li>
+          </ul>
+          <a href="/quiz" class="btn btn--primary btn--full">Start with a Free Reading →</a>
+        </div>
+
+        <div class="pricing__card pricing__card--premium" id="card-premium">
+          <div class="pricing__badge">Most Complete</div>
+          <h3>The Meridian Deep</h3>
+          <p class="pricing__price">$47<span>/mo</span></p>
+          <ul class="pricing__features">
+            <li>✦ Everything in Weekly</li>
+            <li>✦ Monthly 1,200-word deep dive</li>
+            <li>✦ Solar Return analysis</li>
+            <li>✦ Secondary progressions</li>
+            <li>✦ Kabbalistic numerology layer</li>
+            <li>✦ Annual Forecast Report (once/year, $97 value)</li>
+            <li>✦ Biorhythm timing overlay</li>
+            <li>✦ Life cycle + pinnacle analysis</li>
+          </ul>
+          <a href="/quiz" class="btn btn--primary btn--full">Start with a Free Reading →</a>
+        </div>
+
+      </div>
+
+      <p class="subscribe__guarantee">Cancel anytime · Secure checkout via Stripe · No games</p>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <p class="footer-tagline">Rooted in 700 years of traditional astrology — Bonatti · Lilly · Ficino · Valens</p>
+    <div class="footer-links">
+      <a href="/blog">Dispatches</a>
+      <a href="/subscribe">Plans</a>
+      <a href="/privacy">Privacy</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 The Meridian. All rights reserved.</p>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script>
+    (function () {
+      const plan = new URLSearchParams(window.location.search).get('plan');
+      if (plan === 'premium') {
+        document.getElementById('card-premium').classList.add('pricing__card--selected');
+      } else {
+        document.getElementById('card-pro').classList.add('pricing__card--selected');
+      }
+    })();
+  </script>
+</body>
+</html>

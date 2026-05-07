@@ -1,34 +1,8 @@
 [build]
-  command   = "pip install -r requirements.txt"
+  command   = "echo 'Static site - no build step needed'"
   publish   = "static"
 
-[build.environment]
-  PYTHON_VERSION = "3.12"
-
-[functions]
-  directory         = "netlify/functions"
-  node_bundler      = "esbuild"
-  included_files    = [
-    "app.py",
-    "config.py",
-    "models/**",
-    "routes/**",
-    "services/**",
-    "templates/**",
-    "static/**",
-    "content/**",
-  ]
-
-# Route everything through the Flask serverless handler
-[[redirects]]
-  from   = "/static/*"
-  to     = "/static/:splat"
-  status = 200
-
-[[redirects]]
-  from   = "/*"
-  to     = "/.netlify/functions/app"
-  status = 200
+# Pretty URLs are enabled by default; /quiz serves quiz.html, /subscribe serves subscribe.html, /blog serves blog.html.
 
 [context.production.environment]
   FLASK_ENV = "production"
