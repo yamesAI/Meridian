@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }} — The Meridian{% endblock %}
+{% block meta_description %}{{ meta_description }}{% endblock %}
+{% block og_title %}{{ title }}{% endblock %}
+{% block og_description %}{{ meta_description }}{% endblock %}
+
+{% block body_class %}blog-post{% endblock %}
+
+{% block content %}
+<article class="blog-article">
+  <header class="blog-article__header">
+    <div class="blog-article__tags">
+      {% if saturn_return_tag %}
+        <span class="blog-card__tag blog-card__tag--saturn">Saturn Return</span>
+      {% endif %}
+      {% for tag in zodiac_tags %}
+        <span class="blog-card__tag">{{ tag }}</span>
+      {% endfor %}
+    </div>
+    <h1 class="blog-article__title">{{ title }}</h1>
+    <p class="blog-article__date">{{ date }}</p>
+  </header>
+
+  <div class="blog-article__body">
+    {{ html_content | safe }}
+  </div>
+
+  <div class="blog-article__cta">
+    <h3>Get a reading based on these techniques — specific to your chart.</h3>
+    <a href="/quiz" class="btn btn--primary">Get Your Free Transit Reading →</a>
+  </div>
+</article>
+{% endblock %}

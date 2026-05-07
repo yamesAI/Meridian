@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Dispatches — The Meridian{% endblock %}
+{% block meta_description %}Traditional astrology essays, transit analysis, Saturn Return guides, and numerology deep dives from The Meridian.{% endblock %}
+
+{% block body_class %}blog{% endblock %}
+
+{% block content %}
+<section class="blog-section">
+  <header class="blog-header">
+    <h1 class="blog-header__title">Dispatches</h1>
+    <p class="blog-header__sub">Traditional technique. Modern pressure. Real timing.</p>
+  </header>
+
+  <div class="blog-grid">
+    {% for post in posts %}
+    <article class="blog-card {% if post.saturn_return_tag %}blog-card--saturn{% endif %}">
+      {% if post.saturn_return_tag %}
+        <span class="blog-card__tag blog-card__tag--saturn">Saturn Return</span>
+      {% endif %}
+      {% for tag in post.zodiac_tags %}
+        <span class="blog-card__tag">{{ tag }}</span>
+      {% endfor %}
+      <h2 class="blog-card__title">
+        <a href="/blog/{{ post.slug }}">{{ post.title }}</a>
+      </h2>
+      <p class="blog-card__date">{{ post.date }}</p>
+      <p class="blog-card__excerpt">{{ post.excerpt }}</p>
+      <a href="/blog/{{ post.slug }}" class="blog-card__read-more">Read →</a>
+    </article>
+    {% else %}
+    <p class="blog-empty">No dispatches yet. Check back soon.</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

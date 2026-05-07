@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Get Your Full Reading — The Meridian{% endblock %}
+{% block meta_description %}Unlock full weekly transit readings with traditional astrology technique. Cancel anytime.{% endblock %}
+
+{% block body_class %}subscribe{% endblock %}
+
+{% block content %}
+<section class="subscribe-section">
+  <div class="subscribe__inner">
+    <h1 class="subscribe__title">Choose Your Depth</h1>
+    <p class="subscribe__sub">Every reading synthesizes natal chart, current transits, profection year, essential dignities, and numerology. This is not a template.</p>
+
+    <div class="pricing__grid">
+
+      <div class="pricing__card {% if plan == 'pro' %}pricing__card--selected{% endif %}">
+        <h3>The Meridian Weekly</h3>
+        <p class="pricing__price">$17<span>/mo</span></p>
+        <ul class="pricing__features">
+          <li>✦ Full weekly transit synthesis</li>
+          <li>✦ Profection year + time lord analysis</li>
+          <li>✦ Essential dignity for every transit</li>
+          <li>✦ Numerology core numbers + personal year</li>
+          <li>✦ Specific timing windows</li>
+          <li>✦ Saturn Return analysis (if active)</li>
+          <li>✦ Void of course Moon alerts</li>
+          <li>✦ Delivered every Monday morning</li>
+        </ul>
+        <form action="/checkout" method="POST">
+          <input type="hidden" name="plan" value="pro">
+          {% if user %}<input type="hidden" name="email" value="{{ user.email }}">{% endif %}
+          <button type="submit" class="btn btn--primary btn--full">Start Weekly — $17/mo →</button>
+        </form>
+      </div>
+
+      <div class="pricing__card pricing__card--premium {% if plan == 'premium' %}pricing__card--selected{% endif %}">
+        <div class="pricing__badge">Most Complete</div>
+        <h3>The Meridian Deep</h3>
+        <p class="pricing__price">$47<span>/mo</span></p>
+        <ul class="pricing__features">
+          <li>✦ Everything in Weekly</li>
+          <li>✦ Monthly 1,200-word deep dive</li>
+          <li>✦ Solar Return analysis</li>
+          <li>✦ Secondary progressions</li>
+          <li>✦ Kabbalistic numerology layer</li>
+          <li>✦ Annual Forecast Report (once/year, $97 value)</li>
+          <li>✦ Biorhythm timing overlay</li>
+          <li>✦ Life cycle + pinnacle analysis</li>
+        </ul>
+        <form action="/checkout" method="POST">
+          <input type="hidden" name="plan" value="premium">
+          {% if user %}<input type="hidden" name="email" value="{{ user.email }}">{% endif %}
+          <button type="submit" class="btn btn--primary btn--full">Go Deep — $47/mo →</button>
+        </form>
+      </div>
+
+    </div>
+
+    <p class="subscribe__guarantee">Cancel anytime · Secure checkout via Stripe · No games</p>
+  </div>
+</section>
+{% endblock %}

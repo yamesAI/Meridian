@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {% if hero_variant == 'saturn_return' %}
+    Ages 27–30: The Window That Decides The Next Decade | The Meridian
+  {% elif hero_variant == 'sign' %}
+    {{ sign|title }} Season — What The Sky Is Actually Saying | The Meridian
+  {% elif hero_variant == 'life_path' %}
+    Life Path {{ life_path }} — Your Transit Reading | The Meridian
+  {% else %}
+    The Meridian — AI Transit Readings Rooted in 700 Years of Tradition
+  {% endif %}
+{% endblock %}
+
+{% block body_class %}landing{% endblock %}
+
+{% block content %}
+
+<!-- HERO ─────────────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero__stars"></div>
+  <div class="hero__content">
+
+    {% if hero_variant == 'saturn_return' %}
+      <p class="hero__eyebrow">Saturn Return Alert</p>
+      <h1 class="hero__headline">If You Were Born Between 1993 and 1998,<br>Saturn Is Watching You Right Now</h1>
+      <p class="hero__sub">The next 90 days of your Saturn Return aren't random. Traditional astrology has a 700-year-old map for exactly this window — and it's more specific than anything you've read.</p>
+
+    {% elif hero_variant == 'sign' %}
+      <p class="hero__eyebrow">{{ sign|title }} Season</p>
+      <h1 class="hero__headline">{{ sign|title }} Season Isn't What Co-Star Told You</h1>
+      <p class="hero__sub">Your sign is the backdrop, not the story. The story is your transits — the specific planetary pressures active in your chart right now. Get the real reading.</p>
+
+    {% elif hero_variant == 'life_path' %}
+      <p class="hero__eyebrow">Life Path {{ life_path }}</p>
+      <h1 class="hero__headline">Life Path {{ life_path }}s Are In a Window That Closes This Year</h1>
+      <p class="hero__sub">When your numerology and your transits say the same thing, pay attention. Here's what both systems are pointing to for you right now.</p>
+
+    {% else %}
+      <p class="hero__eyebrow">Traditional Astrology · Modern Intelligence</p>
+      <h1 class="hero__headline">If You Were Born Between 1993 and 1997,<br>Saturn Is Testing You Right Now</h1>
+      <p class="hero__sub">Your Saturn Return is the most significant astrological event of your life. Astrologers have mapped this window since 1277. Get a reading that actually uses the technique.</p>
+    {% endif %}
+
+    <a href="/quiz?utm_source={{ utm_source }}&utm_campaign={{ utm_campaign }}" class="btn btn--primary btn--lg">
+      Get Your Free Transit Reading →
+    </a>
+    <p class="hero__disclaimer">Free. No credit card. Takes 2 minutes.</p>
+  </div>
+</section>
+
+<!-- AUTHORITY STRIP ──────────────────────────────────────────────────── -->
+<section class="authority-strip">
+  <p class="authority-strip__label">Rooted in 700 years of traditional astrology</p>
+  <div class="authority-strip__names">
+    <span>Guido Bonatti <em>1277</em></span>
+    <span>William Lilly <em>1647</em></span>
+    <span>Marsilio Ficino <em>1489</em></span>
+    <span>Vettius Valens <em>2nd c.</em></span>
+  </div>
+</section>
+
+<!-- PROOF ────────────────────────────────────────────────────────────── -->
+<section class="proof section">
+  <h2 class="section__title">What People Said After Their Reading</h2>
+  <div class="testimonials">
+    <div class="testimonial">
+      <p class="testimonial__quote">"It named the exact thing I've been avoiding in my business. Not vaguely — it said 'the partnership that holds creative authority over your work.' That's one person. One conversation I've been postponing for months."</p>
+      <p class="testimonial__author">— Danielle R., 29, Brand Strategist</p>
+    </div>
+    <div class="testimonial">
+      <p class="testimonial__quote">"I thought I was past astrology. Then it told me I was in the second half of my Saturn Return with 11 months remaining and that my Personal Year 8 was making the financial pressure feel like identity pressure. It was right."</p>
+      <p class="testimonial__author">— Marcus T., 31, Founder</p>
+    </div>
+    <div class="testimonial">
+      <p class="testimonial__quote">"The timing window was specific: two days, and what to do during them. I acted on it. That contract closed."</p>
+      <p class="testimonial__author">— Priya S., 28, Consultant</p>
+    </div>
+  </div>
+</section>
+
+<!-- THE MECHANISM ────────────────────────────────────────────────────── -->
+<section class="mechanism section section--dark">
+  <div class="mechanism__inner">
+    <h2 class="section__title">Why This Is Different From Every Astrology App You've Used</h2>
+    <div class="mechanism__grid">
+      <div class="mechanism__item">
+        <h3>Transit Astrology, Not Sun Sign Horoscopes</h3>
+        <p>Your sun sign describes your personality. Transits describe what's actually happening to you right now — the specific planetary pressures, openings, and closing windows in your chart today.</p>
+      </div>
+      <div class="mechanism__item">
+        <h3>The Profection Year Technique</h3>
+        <p>Every year of your life, a specific house of your chart becomes activated. Every transit to that house and its ruling planet is amplified. No mainstream app uses this. Astrologers have used it since Rome.</p>
+      </div>
+      <div class="mechanism__item">
+        <h3>The Saturn Return Is The Main Event</h3>
+        <p>If you're between 27 and 30, or 57 and 62, Saturn is returning to where it was when you were born. William Lilly called this "the completion of the first great arc of a life." It's the highest-stakes window you'll face for 29 years.</p>
+      </div>
+      <div class="mechanism__item">
+        <h3>Numerology Confirms the Astrology</h3>
+        <p>When your Life Path number and Personal Year align with your profection year and active transits, the pattern becomes unmistakable. We show you when all systems agree — because that's when to move.</p>
+      </div>
+    </div>
+    <a href="/quiz" class="btn btn--primary">Get Your Free Reading →</a>
+  </div>
+</section>
+
+<!-- PRICING PREVIEW ──────────────────────────────────────────────────── -->
+<section class="pricing section">
+  <h2 class="section__title">Choose Your Depth</h2>
+  <div class="pricing__grid">
+    <div class="pricing__card pricing__card--free">
+      <h3>Free</h3>
+      <p class="pricing__price">$0</p>
+      <p class="pricing__desc">Weekly transit summary. Full Saturn Return analysis. Your profection year and time lord identified.</p>
+      <a href="/quiz" class="btn btn--outline">Start Free →</a>
+    </div>
+    <div class="pricing__card pricing__card--pro pricing__card--featured">
+      <div class="pricing__badge">Most Popular</div>
+      <h3>The Meridian Weekly</h3>
+      <p class="pricing__price">$17<span>/mo</span></p>
+      <p class="pricing__desc">Full weekly synthesis: all transits + profection + time lords + numerology callout. Delivered every Monday.</p>
+      <a href="/subscribe?plan=pro" class="btn btn--primary">Get The Meridian →</a>
+    </div>
+    <div class="pricing__card pricing__card--premium">
+      <h3>The Meridian Deep</h3>
+      <p class="pricing__price">$47<span>/mo</span></p>
+      <p class="pricing__desc">Everything in Pro + monthly 1,200-word deep dive + Annual Forecast Report. Kabbalah numerology layer included.</p>
+      <a href="/subscribe?plan=premium" class="btn btn--outline">Go Deep →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ ──────────────────────────────────────────────────────────────── -->
+<section class="faq section section--dark">
+  <h2 class="section__title">Questions</h2>
+  <div class="faq__list">
+    <details class="faq__item">
+      <summary>Is this real astrology?</summary>
+      <p>Yes — rooted in the techniques of William Lilly's "Christian Astrology" (1647) and Guido Bonatti's "Liber Astronomiae" (1277). This isn't sun sign pop astrology. It's traditional technique applied to your specific chart.</p>
+    </details>
+    <details class="faq__item">
+      <summary>How is this different from Co-Star?</summary>
+      <p>Co-Star uses template text mapped to natal placements. The Meridian calculates your profection year, identifies your time lord, checks essential dignities for every transit, cross-references your numerology cycles, and synthesizes all of it into a specific, personal reading. It's not the same category of thing.</p>
+    </details>
+    <details class="faq__item">
+      <summary>What is a Saturn Return?</summary>
+      <p>Saturn takes 29.5 years to orbit the sun. When it returns to where it was at your birth, you enter a 2-3 year window of intense restructuring — especially in career, identity, and financial structures. Traditional astrologers considered it the single most important transit of a person's first 30 years.</p>
+    </details>
+    <details class="faq__item">
+      <summary>What do I need to provide?</summary>
+      <p>Your birth date, approximate birth time (if known), and birth city. The more accurate your birth time, the more precise the reading — especially the Ascendant and house placements.</p>
+    </details>
+    <details class="faq__item">
+      <summary>Can I cancel anytime?</summary>
+      <p>Yes — cancel from your account or email us. No questions, no games.</p>
+    </details>
+  </div>
+</section>
+
+<!-- FINAL CTA ────────────────────────────────────────────────────────── -->
+<section class="final-cta section">
+  <h2>The window you're in right now has a name.<br>Get the reading that names it.</h2>
+  <a href="/quiz" class="btn btn--primary btn--lg">Get Your Free Transit Reading →</a>
+</section>
+
+{% endblock %}

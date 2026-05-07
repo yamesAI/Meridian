@@ -1,0 +1,34 @@
+[build]
+  command   = "pip install -r requirements.txt"
+  publish   = "static"
+
+[functions]
+  directory         = "netlify/functions"
+  node_bundler      = "esbuild"
+  included_files    = [
+    "app.py",
+    "config.py",
+    "models/**",
+    "routes/**",
+    "services/**",
+    "templates/**",
+    "static/**",
+    "content/**",
+  ]
+
+# Route everything through the Flask serverless handler
+[[redirects]]
+  from   = "/static/*"
+  to     = "/static/:splat"
+  status = 200
+
+[[redirects]]
+  from   = "/*"
+  to     = "/.netlify/functions/app"
+  status = 200
+
+[context.production.environment]
+  FLASK_ENV = "production"
+
+[context.deploy-preview.environment]
+  FLASK_ENV = "development"
